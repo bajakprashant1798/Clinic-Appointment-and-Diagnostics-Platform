@@ -4,7 +4,7 @@ This project contains an ER diagram for a simple clinic management system.
 
 ER Diagram:
 <img width="1833" height="1366" alt="Clinic Appointment and Diagnostics Platform dark" src="https://github.com/user-attachments/assets/a853cf77-e2fa-4578-b07f-e041785e10f5" />
-Eraser link: https://app.eraser.io/workspace/1WoZ2zNgU0rsKD42UVvf?origin=share
+Eraser link: [https://app.eraser.io/workspace/1WoZ2zNgU0rsKD42UVvf?origin=share](https://app.eraser.io/workspace/a9D09aRP0buAVTFk1X4G?origin=share)
 
 It supports:
 - Managing doctors and patients  
