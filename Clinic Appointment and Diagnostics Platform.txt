@@ -1,0 +1,103 @@
+users [icon: user, color: blue] {
+  id serial pk
+  name string
+  email string
+  phoneNumber string
+  password string
+  accessToken string
+  refreshToken string
+  updatedAt timestamp
+  createdAt timestamp
+}
+doctors [icon: users, color: orange] {
+  id serial pk
+  user_id serial fk
+  specialization string
+  updatedAt timestamp
+  createdAt timestamp
+}
+patients [icon: users, color: yellow] {
+  id serial pk
+  user_id serial fk
+  updatedAt timestamp
+  createdAt timestamp
+}
+
+doctors.user_id > users.id
+patients.user_id > users.id
+
+appointments [ color: green ] {
+  id serial pk
+  doctor_id serial fk
+  patient_id serial fk
+  scheduled_at timestamp
+  status string // panding, approved, cancelled, completed
+  updatedAt timestamp
+  createdAt timestamp
+}
+
+appointments.doctor_id > doctors.id
+appointments.patient_id > patients.id
+
+consultations [ color: green ] {
+  id serial pk
+  appointment_id serial fk
+  doctor_id serial fk
+  patient_id serial fk
+  diagnosis text
+  notes text
+  weight decimal
+  height decimal
+  blood_pressure string
+  issue text
+  createdAt timestamp
+  updatedAt timestamp
+}
+
+consultations.doctor_id > doctors.id
+consultations.patient_id > patients.id
+consultations.appointment_id > appointments.id
+
+tests [color: yellow] {
+  id serial pk
+  name string
+  description string
+  createdAt timestamp
+  updatedAt timestamp
+}
+prescribed_tests [color: pink] {
+  id serial pk
+  consultation_id serial fk
+  test_id serial fk
+  status string // pending, completed
+}
+reports [color: red] {
+  id serial pk
+  prescribed_test_id serial fk
+  result text
+  report_date timestamp
+}
+prescriptions [color: blue] {
+  id serial pk
+  consultation_id serial fk
+  medicine_name string
+  dosage string
+  duration string
+  updatedAt timestamp
+  createdAt timestamp
+}
+
+prescriptions.consultation_id > consultations.id
+prescribed_tests.consultation_id > consultations.id
+prescribed_tests.test_id > tests.id
+reports.prescribed_test_id > prescribed_tests.id
+
+payments {
+  id serial pk
+  appointment_id serial fk
+  amount decimal
+  status string // paid, pending
+  payment_date timestamp
+}
+
+payments.appointment_id > appointments.id
